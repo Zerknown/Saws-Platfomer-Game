@@ -6,7 +6,9 @@ using TMPro;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int collectableItems = 0;
+   
+    public int collectableItems { get; private set; }
+
     
     [SerializeField] private TMP_Text collectableItemsText;
     [SerializeField] private AudioSource collectionSoundEffect;

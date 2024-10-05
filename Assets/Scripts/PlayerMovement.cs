@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private AudioSource jumpSoundEffect;
 
+    [SerializeField] private float wallSlideSpeed = 2f;
+
     private Rigidbody2D rb2d;
     private Animator anim;
     private SpriteRenderer sprite;
@@ -18,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private enum MovementState { idle, running, jumping, falling }
 
     private bool playerFacingRight = true;
+    private bool touchingStickyWalls;
+    private bool isWallJumping;
     
     // Start is called before the first frame update
     void Start()
@@ -43,6 +47,23 @@ public class PlayerMovement : MonoBehaviour
             rb2d.velocity = new Vector2(0, jumpForce);
         }
 
+        if (touchingStickyWalls)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                PerformWallJump();
+               
+            }
+
+            // Slide down the wall if falling
+            if (rb2d.velocity.y < 0)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, -wallSlideSpeed);
+            }
+        }
+
+
+
         UpdateAnimationState();
 
         //if (Input.GetKey(KeyCode.A))
@@ -63,26 +84,70 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
+    private void PerformWallJump()
+    {
+        // Make the player jump away from the wall
+        isWallJumping = true;
+
+        // Apply a force opposite to the wall direction
+        float jumpDirection = isTouchingLeftWall() ? -1 : 1;
+        jumpSoundEffect.Play();
+        rb2d.velocity = new Vector2(jumpForce * jumpDirection, jumpForce);
+    }
+
+    private bool isTouchingLeftWall()
+    {
+        return touchingStickyWalls && transform.position.x < 0;
+    }
+
+    private bool isTouchingRightWall()
+    {
+        return touchingStickyWalls && transform.position.x > 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "StickyWall")
+        {
+            touchingStickyWalls = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "StickyWall")
+        {
+            touchingStickyWalls = false;
+            isWallJumping = false;
+        }
+    }
 
     private void UpdateAnimationState()
     {
         MovementState state;
-
-        if (dirX > 0f)
+        if (!touchingStickyWalls)
         {
-            state = MovementState.running;
-            sprite.flipX = false;
-            //anim.
-        }
-        else if (dirX < 0f)
-        {
-            state = MovementState.running;
-            sprite.flipX = true;
+            if (dirX > 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = false;
+                //anim.
+            }
+            else if (dirX < 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = true;
+            }
+            else
+            {
+                state = MovementState.idle;
+            }
         }
         else
         {
-            state = MovementState.idle;
+            state = MovementState.falling;
         }
+        
 
         if (rb2d.velocity.y > .1f)
         {
