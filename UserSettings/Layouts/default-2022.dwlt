@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 148
+  controlID: 84
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -569,7 +569,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 463affff9a3affff383cffff2c42ffff7e49fffffc4fffff2850ffff129bffff60a6ffffc0b6ffffe6bdffff3cbeffff94ceffffaad7ffffc4dfffffb2e8ffffe6eeffff1afbffff5890000090ad0000dead0000
+      m_ExpandedIDs: 0cd9ffff60d9fffff6daffffe2e0ffff2ce8ffffa2eeffffc6eeffff1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -700,9 +700,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5c6e0000
-    m_LastClickedID: 28252
-    m_ExpandedIDs: 000000003a6e00003c6e00003e6e0000406e000000ca9a3bffffff7f
+    m_SelectedIDs: a26d0000
+    m_LastClickedID: 28066
+    m_ExpandedIDs: 000000007e6d0000806d0000826d0000846d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -730,7 +730,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003a6e00003c6e00003e6e0000406e0000
+    m_ExpandedIDs: 000000007e6d0000806d0000826d0000846d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 928f0000126e000000000000fad2ffff28630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1194,7 +1194,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 48, y: 48}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
